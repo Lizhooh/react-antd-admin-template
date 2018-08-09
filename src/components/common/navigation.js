@@ -84,11 +84,16 @@ const Panel = styled.div`
 const Selected = styled.div.attrs({
     className: 'flex flex-ai-center',
 })`
-    padding: 5px 7px;
+    border-top: 1px solid #eee;
+    padding: 8px 7px;
     cursor: pointer;
     border-radius: 3px;
     color: #567;
     font-size: 14px;
+
+    &:first-of-type {
+        border: none;
+    }
 
     > span {
         margin-left: 4px;

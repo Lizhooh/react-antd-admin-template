@@ -6,7 +6,7 @@ export default class Theme extends Fine.Module {
         color: 'rgba(30, 125, 245, 0.9)',
 
         menu: {
-            width: '200px',
+            width: '220px',
             backgroundColor: 'rgba(32, 38, 51, 1)',
         },
 
@@ -16,4 +16,3 @@ export default class Theme extends Fine.Module {
         },
     }
 }
-

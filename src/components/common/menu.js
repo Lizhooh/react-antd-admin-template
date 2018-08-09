@@ -60,7 +60,7 @@ export default class Menu extends Component {
                             <Item
                                 className="flex flex-ai-center waves-effect waves-button"
                                 onClick={this.onItemClick.bind(this, index)}>
-                                <Icon type={item.icon} color="#eee" size={16} margin='0 10px 0 0' />
+                                <Icon type={item.icon} color="#ccc" size={16} margin='0 10px 0 0' />
                                 <span className="flex-full">{item.name}</span>
                                 <Icon
                                     type={`keyboard_arrow_${mark[index] ? 'down' : 'up'}`}
@@ -109,7 +109,7 @@ const Logo = styled.div`
 const Item = styled.div`
     padding: 12px 24px;
     cursor: pointer;
-    color: #e4e5e6;
+    color: #ddd;
     position: relative;
     font-size: 14px;
 
