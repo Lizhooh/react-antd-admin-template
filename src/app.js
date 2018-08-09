@@ -31,13 +31,13 @@ export default connect(
     )
 
     render() {
-        const { menu } = this.props.root;
+        const { menu, navigation } = this.props.root;
 
         return (
             <Router>
                 <div>
                     <Menu data={menu} />
-                    <Navigation />
+                    <Navigation data={navigation} />
                     {this.renderMain()}
                 </div>
             </Router>

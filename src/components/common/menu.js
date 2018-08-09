@@ -97,10 +97,6 @@ const Panel = styled.div`
     box-shadow: 2px 1px 10px rgba(1, 1, 1, 0.28);
     overflow-y: auto;
     text-shadow: 1px 2px 2px rgba(1, 1, 1, 0.14);
-
-    a {
-        text-decoration: none;
-    }
 `;
 
 const Logo = styled.div`
@@ -132,6 +128,7 @@ const Item = styled.div`
 const ItemSubPanel = styled.div`
     overflow: hidden;
     background-color: rgba(1, 1, 1, 0.18);
+    > a { color: transparent !important; }
 
     ${p => !p.active && `
         height: 0;

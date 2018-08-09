@@ -5,5 +5,5 @@ export default [
         path: '/index',
         exact: false,
         component: IndexView,
-    }
+    },
 ];

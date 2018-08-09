@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default () => (
     <Panel className="flex flex-center">
         <Main className="flex flex-ai-center">
-            <img src={require('../assets/not-found.png')} />
+            <img src={require('../assets/not-found.png')} alt='' />
             <div>
                 <h3>404 - 抱歉，你访问的页面不存在</h3>
                 <p>您要找的页面没有找到，请返回首页继续浏览</p>
@@ -25,8 +25,8 @@ const Main = styled.div`
     color: #567;
 
     > img {
-        max-width: 100%;
-        max-height: 100%;
+        width: 260px;
+        height: 260px;
         margin-right: 20px;
     }
 `;

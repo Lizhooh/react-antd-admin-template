@@ -22,6 +22,7 @@
 使用的技术：
 - es6+
 - react
+- react-router
 - redux
 - redux-fine
 - less

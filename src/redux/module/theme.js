@@ -3,7 +3,7 @@ import Fine from 'redux-fine';
 export default class Theme extends Fine.Module {
     initState = {
         name: 'theme-module',
-        color: '#37f',
+        color: 'rgba(30, 125, 245, 0.9)',
 
         menu: {
             width: '200px',

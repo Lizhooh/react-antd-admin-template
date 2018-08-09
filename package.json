@@ -1,6 +1,6 @@
 {
   "name": "antd-admin",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "author": {
     "name": "lizhooh",
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "antd": "^3.8.0",
+    "classnames": "^2.2.6",
     "find-file-ext": "^0.2.0",
     "nprogress": "^0.2.0",
     "react": "^16.0.0",
