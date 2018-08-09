@@ -5,64 +5,47 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-
-import routerMap from './router';
-import Menu from './components/common/menu';
-import Navigation from './components/common/navigation';
-
-const menuData = [
-    {
-        id: '/home',
-        isparent: true,
-        path: '/home',
-        icon: '',
-        name: '主页',
-        children: [],
-    }, {
-        id: '/star',
-        path: '/star',
-        isparent: true,
-        icon: '',
-        name: '收藏',
-        children: [],
-        component: '',
-    }, {
-        id: '',
-        isparent: true,
-        path: '/about',
-        icon: '',
-        name: '关于',
-        children: [],
-        component: '',
-    },
-];
+import { BrowserRouter as Router } from 'react-router-dom';
+import routerMap from '@/router';
+import Menu from '@/components/common/menu';
+import Navigation from '@/components/common/navigation';
+import NotFound from '@/views/not-found';
 
 export default connect(
-    state => ({ root: state, theme: state.theme }),
+    state => ({ root: state.root, theme: state.theme }),
 )(class App extends Component {
-    render() {
-        return (
-            <div>
-                <Menu data={menuData} />
-                <Navigation />
 
-                <Main>
-                    <Switch>
-                        {routerMap.map((item, index) => (
-                            <Route
-                                key={index}
-                                path={item.path}
-                                component={item.component} />
-                        ))}
-                        <Route component={() => <h3>404</h3>} />
-                    </Switch>
-                </Main>
-            </div>
+    renderMain = () => (
+        <Main>
+            <Switch>
+                {routerMap.map((item, index) => (
+                    <Route
+                        exact={item.exact}
+                        key={index}
+                        path={item.path}
+                        component={item.component} />
+                ))}
+                <Route path='*' component={NotFound} />
+            </Switch>
+        </Main>
+    )
+
+    render() {
+        const { menu } = this.props.root;
+
+        return (
+            <Router>
+                <div>
+                    <Menu data={menu} />
+                    <Navigation />
+                    {this.renderMain()}
+                </div>
+            </Router>
         );
     }
 });
 
 const Main = styled.div`
-    padding-left: 240px;
-    padding-top: 55px;
+    padding-left: ${p => p.theme.menu.width};
+    padding-top: ${p => p.theme.navigation.height};
 `;

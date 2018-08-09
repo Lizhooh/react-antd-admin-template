@@ -1,26 +1,88 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Icon from './icon';
+import { Link } from 'react-router-dom';
+import Nprogress from 'nprogress';
 
 export default class Menu extends Component {
+
+    static defaultProps = {
+        data: [],
+    }
+
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            mark: [... new Array(props.data.length)].fill(false),
+            selected: -1,
+        };
+    }
+
+    onItemClick = index => {
+        const list = this.state.mark.slice();
+        list[index] = !list[index];
+        this.setState({ mark: list });
+    }
+
+    onItemChildClick = key => {
+        this.setState({ selected: key });
+        Nprogress.set(0.4);
+        setTimeout(Nprogress.done, 500);
+    }
+
+    componentDidMount() {
+        // 根据 url 检查激活状态
+        const path = window.location.pathname;
+        const d = this.props.data;
+        for (let i = 0; i < d.length; i++) {
+            if (Array.isArray(d[i].children)) {
+                const item = d[i].children.find(i => i.path === path);
+                if (item) {
+                    this.setState({ selected: item.id });
+                    return;
+                }
+            }
+        }
     }
 
     render() {
         const { data } = this.props;
+        const { mark, selected } = this.state;
 
         return (
             <Panel>
-                <div style={{ height: 160 }}>
-
-
+                <Logo className="flex flex-center">
+                    Logo
+                </Logo>
+                <div>
+                    {data.map((item, index) => (
+                        <div key={item.id}>
+                            <Item
+                                className="flex flex-ai-center waves-effect waves-button"
+                                onClick={this.onItemClick.bind(this, index)}>
+                                <Icon type={item.icon} color="#eee" size={16} margin='0 10px 0 0' />
+                                <span className="flex-full">{item.name}</span>
+                                <Icon
+                                    type={`keyboard_arrow_${mark[index] ? 'down' : 'up'}`}
+                                    color='rgba(255, 255, 255, 0.33)'
+                                />
+                            </Item>
+                            {/* 子项 */}
+                            <ItemSubPanel active={mark[index]}>
+                                {item.children && item.children.map(item => (
+                                    <Link to={item.path} key={item.id}>
+                                        <ItemChild
+                                            className="flex flex-ai-center"
+                                            active={item.id === selected}
+                                            onClick={this.onItemChildClick.bind(this, item.id)}>
+                                            <span className="flex-full">{item.name}</span>
+                                        </ItemChild>
+                                    </Link>
+                                ))}
+                            </ItemSubPanel>
+                        </div>
+                    ))}
                 </div>
-                {data.map((item, index) => (
-                    <Item key={index}>
-                        {item.name}
-                    </Item>
-                ))}
             </Panel>
         );
     }
@@ -34,14 +96,55 @@ const Panel = styled.div`
     position: fixed;
     box-shadow: 2px 1px 10px rgba(1, 1, 1, 0.28);
     overflow-y: auto;
+    text-shadow: 1px 2px 2px rgba(1, 1, 1, 0.14);
+
+    a {
+        text-decoration: none;
+    }
+`;
+
+const Logo = styled.div`
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #999;
+    font-size: 18px;
 `;
 
 const Item = styled.div`
     padding: 12px 24px;
     cursor: pointer;
     color: #e4e5e6;
+    position: relative;
+    font-size: 14px;
+
+    > span {
+        text-align: left;
+    }
+
     &:hover {
+        color: #fff;
+        font-size: 14px;
         transition: all 0.18s ease-in-out;
         background-color: rgba(255, 255, 255, 0.1);
     }
+`;
+
+const ItemSubPanel = styled.div`
+    overflow: hidden;
+    background-color: rgba(1, 1, 1, 0.18);
+
+    ${p => !p.active && `
+        height: 0;
+        padding: 0;
+    `}
+`;
+
+const ItemChild = Item.extend`
+    padding: 10px 24px 10px 50px;
+    color: #bbb;
+
+    ${p => p.active && `
+        background-color: ${p.theme.color} !important;
+        color: #fff;
+    `}
 `;

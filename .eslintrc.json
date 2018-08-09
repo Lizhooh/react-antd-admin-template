@@ -18,7 +18,8 @@
         "ecmaVersion": 2016
     },
     "plugins": [
-        "react"
+        "react",
+        "babel"
     ],
     "rules": {
         "indent": "off",
@@ -29,6 +30,7 @@
         "no-unused-vars": "warn",
         "no-undef": "warn",
         "no-console": "off",
-        "no-empty-pattern": "warn"
+        "no-empty-pattern": "warn",
+        "react/display-name": "off"
     }
 }
