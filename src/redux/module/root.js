@@ -12,7 +12,7 @@ export default class RootModule extends Fine.Module {
             name: '主页',
             children: [{
                 id: '/index',
-                path: '/index',
+                path: ['/', '/index'],
                 name: '仪表盘',
             }],
         }, {
@@ -56,6 +56,7 @@ export default class RootModule extends Fine.Module {
                 icon: 'exit_to_app',
             }],
             userName: 'admin',
-        }
+        },
+
     }
 }

@@ -36,7 +36,12 @@ export default class Menu extends Component {
         const d = this.props.data;
         for (let i = 0; i < d.length; i++) {
             if (Array.isArray(d[i].children)) {
-                const item = d[i].children.find(i => i.path === path);
+                const item = d[i].children.find(i => {
+                    if (Array.isArray(i.path)) {
+                        return i.path.indexOf(path) > -1;
+                    }
+                    return i.path === path;
+                });
                 if (item) {
                     this.setState({ selected: item.id });
                     return;
@@ -70,7 +75,7 @@ export default class Menu extends Component {
                             {/* 子项 */}
                             <ItemSubPanel active={mark[index]}>
                                 {item.children && item.children.map(item => (
-                                    <Link to={item.path} key={item.id}>
+                                    <Link to={Array.isArray(item.path) ? item.path[0] : item.path} key={item.id}>
                                         <ItemChild
                                             className="flex flex-ai-center"
                                             active={item.id === selected}
