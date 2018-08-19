@@ -8,8 +8,8 @@
 - assets
 - components
     - common
-- redux
-    - module
+- mobx
+    - stores
 - router
 - styles
 - views
@@ -23,9 +23,8 @@
 - es6+
 - react
 - react-router
-- redux
-- redux-fine
+- mobx
+- mobx-free
 - less
 - styled-components
 - ant design
-

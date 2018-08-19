@@ -1,19 +1,28 @@
 import React, { Component, Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import routerMap from '@/router';
+
+// components
 import Menu from '@/components/common/menu';
 import Navigation from '@/components/common/navigation';
+
+// views
 import NotFound from '@/views/not-found';
+
+// free
+import Free from 'mobx-free';
 
 import { OnUpdate } from 'rrc';
 
+// 主架构，此处可做路由拦截。
+export default Free.helper('connect')(
+    state => ({ root: state.root }),
+)(class extends Component {
 
-export default connect(
-    state => ({ root: state.root, theme: state.theme }),
-)(class App extends Component {
+    componentDidMount() {
+        this.props.root.update();
+    }
 
     renderMain = () => (
         <Main>
@@ -47,11 +56,12 @@ export default connect(
         const { menu, navigation } = this.props.root;
 
         return (
-            <Router>
+            <Router onUpdate={e => console.log(e)}>
                 <Fragment>
                     <Menu data={menu} />
                     <Navigation data={navigation} />
                     {this.renderMain()}
+
                     <OnUpdate call={location => console.log(location)} />
                 </Fragment>
             </Router>

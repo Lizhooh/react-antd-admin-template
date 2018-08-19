@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Fine from 'redux-fine';
-import { connect } from 'react-redux';
+import Free from 'mobx-free';
 
-export default connect(
+export default Free.helper('connect')(
     state => ({ state: state.index }),
-    Fine.actions('index'),
-)(class IndexView extends Component {
+)(class extends Component {
     render() {
         const { name } = this.props.state;
 

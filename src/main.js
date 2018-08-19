@@ -1,13 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import App from './app';
+import Free from 'mobx-free';
 
-export default connect(
-    state => ({ root: state, theme: state.theme }),
+// 加入主题
+export default Free.helper('connect')(
+    state => ({ theme: state.theme }),
 )(({ theme }) => (
     <ThemeProvider theme={theme}>
         <App />
     </ThemeProvider>
 ));
-

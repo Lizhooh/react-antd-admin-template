@@ -13,7 +13,7 @@ export default class Menu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mark: [... new Array(props.data.length)].fill(false),
+            mark: [...new Array(props.data.length)].fill(false),
             selected: -1,
         };
     }
@@ -50,6 +50,34 @@ export default class Menu extends Component {
         }
     }
 
+    renderMenu = (data, mark, selected) => data.map((item, index) => (
+        <div key={item.id}>
+            <Item
+                className="flex flex-ai-center waves-effect waves-button"
+                onClick={this.onItemClick.bind(this, index)}>
+                <Icon type={item.icon} color="#ccc" size={16} margin='0 10px 0 0' />
+                <span className="flex-full">{item.name}</span>
+                <Icon
+                    type={`keyboard_arrow_${mark[index] ? 'down' : 'up'}`}
+                    color='rgba(255, 255, 255, 0.33)'
+                />
+            </Item>
+            {/* 子项 */}
+            <ItemSubPanel active={mark[index]}>
+                {item.children && item.children.map(item => (
+                    <Link to={Array.isArray(item.path) ? item.path[0] : item.path} key={item.id}>
+                        <ItemChild
+                            className="flex flex-ai-center"
+                            active={item.id === selected}
+                            onClick={this.onItemChildClick.bind(this, item.id)}>
+                            <span className="flex-full">{item.name}</span>
+                        </ItemChild>
+                    </Link>
+                ))}
+            </ItemSubPanel>
+        </div>
+    ))
+
     render() {
         const { data } = this.props;
         const { mark, selected } = this.state;
@@ -59,35 +87,7 @@ export default class Menu extends Component {
                 <Logo className="flex flex-center">
                     Logo
                 </Logo>
-                <div>
-                    {data.map((item, index) => (
-                        <div key={item.id}>
-                            <Item
-                                className="flex flex-ai-center waves-effect waves-button"
-                                onClick={this.onItemClick.bind(this, index)}>
-                                <Icon type={item.icon} color="#ccc" size={16} margin='0 10px 0 0' />
-                                <span className="flex-full">{item.name}</span>
-                                <Icon
-                                    type={`keyboard_arrow_${mark[index] ? 'down' : 'up'}`}
-                                    color='rgba(255, 255, 255, 0.33)'
-                                />
-                            </Item>
-                            {/* 子项 */}
-                            <ItemSubPanel active={mark[index]}>
-                                {item.children && item.children.map(item => (
-                                    <Link to={Array.isArray(item.path) ? item.path[0] : item.path} key={item.id}>
-                                        <ItemChild
-                                            className="flex flex-ai-center"
-                                            active={item.id === selected}
-                                            onClick={this.onItemChildClick.bind(this, item.id)}>
-                                            <span className="flex-full">{item.name}</span>
-                                        </ItemChild>
-                                    </Link>
-                                ))}
-                            </ItemSubPanel>
-                        </div>
-                    ))}
-                </div>
+                {this.renderMenu(data, mark, selected)}
             </Panel>
         );
     }
