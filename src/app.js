@@ -7,9 +7,7 @@ import routerMap from '@/router';
 import Menu from '@/components/common/menu';
 import Navigation from '@/components/common/navigation';
 import NotFound from '@/views/not-found';
-
 import { OnUpdate } from 'rrc';
-
 
 export default connect(
     state => ({ root: state.root, theme: state.theme }),

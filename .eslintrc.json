@@ -28,7 +28,7 @@
         "semi": "off",
         "react/prop-types": "off",
         "no-unused-vars": "warn",
-        "no-undef": "warn",
+        "no-undef": "error",
         "no-console": "off",
         "no-empty-pattern": "warn",
         "react/display-name": "off",

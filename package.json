@@ -10,6 +10,7 @@
     "antd": "^3.8.0",
     "classnames": "^2.2.6",
     "find-file-ext": "^0.2.0",
+    "lodash.assign": "^4.2.0",
     "nprogress": "^0.2.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -17,7 +18,9 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
-    "redux-fine": "^1.5.3",
+    "redux-fine": "^3.0.7",
+    "redux-logger": "^3.0.6",
+    "rrc": "^0.10.1",
     "styled-components": "^3.4.2"
   },
   "scripts": {
