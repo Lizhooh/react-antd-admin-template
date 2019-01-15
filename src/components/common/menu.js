@@ -36,7 +36,7 @@ export default class Menu extends Component {
                     <div key={item.id}>
                         <Item
                             className="flex flex-ai-center"
-                            onClick={e => onMenuTogger(index)}>
+                            onClick={() => onMenuTogger(index)}>
                             <Icon type={item.icon} color="#ccc" size={16} margin='0 10px 0 0' />
                             <span className="flex-full">{item.name}</span>
                             <Icon
@@ -46,14 +46,14 @@ export default class Menu extends Component {
                         </Item>
                         {/* 子项 */}
                         <ItemSubPanel active={mark[index]} n={item.children}>
-                            {item.children && item.children.map(item => (
-                                <Link key={item.id}
-                                    to={Array.isArray(item.path) ? item.path[0] : item.path}>
+                            {item.children && item.children.map(i => (
+                                <Link key={i.id}
+                                    to={Array.isArray(i.path) ? i.path[0] : i.path}>
                                     <ItemChild
                                         className="flex flex-ai-center"
-                                        active={item.id === active.id}
-                                        onClick={e => onMenuItemClick(item)}>
-                                        <span className="flex-full">{item.name}</span>
+                                        active={i.id === active.id}
+                                        onClick={() => onMenuItemClick(i, item)}>
+                                        <span className="flex-full">{i.name}</span>
                                     </ItemChild>
                                 </Link>
                             ))}
@@ -94,7 +94,6 @@ const Item = styled.div`
     font-size: 14px;
     height: 45px;
     border-right: 2px solid transparent;
-
     > span { text-align: left; }
 
     &:hover, &:active {

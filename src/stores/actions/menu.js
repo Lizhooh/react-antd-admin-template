@@ -9,14 +9,18 @@ function isActive(list, P) {
                 return i.path.indexOf(P) > -1;
             return i.path === P;
         });
-        if (item) return item;
+        if (item) {
+            item.parent = list[i];
+            return item;
+        }
     }
     return false;
 }
 
-export const onMenuItemClick = item => {
+export const onMenuItemClick = (item, parent) => {
     Nprogress.set(0.4);
     setTimeout(Nprogress.done, 500);
+    item.parent = parent;
     commit('menu', { active: item });
 }
 

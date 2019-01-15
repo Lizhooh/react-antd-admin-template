@@ -29,7 +29,7 @@ export const menu = createReducer('menu', {
         name: '主页',
         children: [{
             id: '/index',
-            path: ['/', '/index'],
+            path: '/index',
             name: '仪表盘',
         }],
     }, {
@@ -50,19 +50,19 @@ export const menu = createReducer('menu', {
         children: [{
             id: '/setting',
             path: '/setting',
-            name: '系统设置',
+            name: '系统设置1',
         }, {
             id: '/setting2',
             path: '/setting2',
-            name: '系统设置',
+            name: '系统设置2',
         }, {
             id: '/setting3',
             path: '/setting3',
-            name: '系统设置',
+            name: '系统设置3',
         }],
     }],
     active: {},
-    mark: [... new Array(100)].fill(false),
+    mark: [...new Array(100)].fill(false),
 });
 
 // 导航栏

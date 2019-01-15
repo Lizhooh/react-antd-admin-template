@@ -16,7 +16,14 @@ export default class Navigation extends Component {
             <Panel className="flex flex-ai-center">
                 <div className='flex-ai-center'>
                     <Breadcrumb>
-                        <Breadcrumb.Item><Link to='/'>首页</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                            <Link to='/'>首页</Link>
+                        </Breadcrumb.Item>
+                        {activeMenu.id &&
+                            <Breadcrumb.Item>
+                                {activeMenu.parent.name}
+                            </Breadcrumb.Item>
+                        }
                         {activeMenu.id &&
                             <Breadcrumb.Item>
                                 <Link to={activeMenu.id}>{activeMenu.name}</Link>
@@ -64,7 +71,7 @@ const Panel = styled.div`
     right: 0;
     box-shadow: 1px 3px 8px rgba(1, 1, 1, 0.06);
     text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.04);
-    padding-left: 15px;
+    padding-left: 16px;
 
     ul.nav-list {
         margin: 0;
