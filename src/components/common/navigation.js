@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Popover } from 'antd';
-import Icon from './icon';
+import { Popover, Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
+import Icon from './Icon';
 
 function StringFirstToUpper(str = '') {
     return str[0].toUpperCase() + str.slice(1);
@@ -9,10 +10,21 @@ function StringFirstToUpper(str = '') {
 
 export default class Navigation extends Component {
     render() {
-        const { data = {} } = this.props;
+        const { data = {}, activeMenu } = this.props;
 
         return (
             <Panel className="flex flex-ai-center">
+                <div className='flex-ai-center'>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><Link to='/'>首页</Link></Breadcrumb.Item>
+                        {activeMenu.id &&
+                            <Breadcrumb.Item>
+                                <Link to={activeMenu.id}>{activeMenu.name}</Link>
+                            </Breadcrumb.Item>
+                        }
+                    </Breadcrumb>
+                </div>
+
                 <div className="flex-full"></div>
                 <ul className="flex nav-list">
                     {data.link && data.link.map((item, index) => (
@@ -52,6 +64,7 @@ const Panel = styled.div`
     right: 0;
     box-shadow: 1px 3px 8px rgba(1, 1, 1, 0.06);
     text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.04);
+    padding-left: 15px;
 
     ul.nav-list {
         margin: 0;

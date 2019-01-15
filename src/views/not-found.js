@@ -7,7 +7,7 @@ export default () => (
             <img src={require('../assets/not-found.png')} alt='' />
             <div>
                 <h3>404 - 抱歉，你访问的页面不存在</h3>
-                <p>您要找的页面没有找到，请返回首页继续浏览</p>
+                <p>您要找的页面没有找到，请返回 <a href="/">首页</a> 继续浏览</p>
             </div>
         </Main>
     </Panel>

@@ -2,7 +2,7 @@ import IndexView from '../views/index';
 
 export default [
     {
-        path: ['/', '/index'],
+        path: ['/index'],
         exact: true,
         component: IndexView,
     },
