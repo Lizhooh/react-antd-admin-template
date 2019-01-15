@@ -74,7 +74,7 @@ const Panel = styled.div`
     height: 100%;
     height: 100vh;
     position: fixed;
-    box-shadow: 2px 1px 10px rgba(1, 1, 1, 0.28);
+    box-shadow: 2px 1px 10px rgba(1, 1, 1, 0.24);
     text-shadow: 1px 2px 2px rgba(1, 1, 1, 0.12);
     overflow-y: auto;
 `;
