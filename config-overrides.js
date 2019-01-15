@@ -2,6 +2,8 @@ const { injectBabelPlugin } = require('react-app-rewired');
 const rewireLess = require('react-app-rewire-less');
 const path = require('path');
 
+/* global __dirname */
+
 module.exports = function override(config, env) {
     // 修改一些配置
     config = injectBabelPlugin(['import', { libraryName: 'antd', style: true }], config);
