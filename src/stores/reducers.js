@@ -50,15 +50,21 @@ export const menu = createReducer('menu', {
         children: [{
             id: '/setting',
             path: '/setting',
-            name: '系统设置1',
+            name: '系统设置',
+        }],
+    }, {
+        id: 'chart',
+        isparent: true,
+        icon: 'movie',
+        name: '图表',
+        children: [{
+            id: '/chart',
+            path: '/chart',
+            name: '条形图',
         }, {
-            id: '/setting2',
-            path: '/setting2',
-            name: '系统设置2',
-        }, {
-            id: '/setting3',
-            path: '/setting3',
-            name: '系统设置3',
+            id: '/chart2',
+            path: '/chart2',
+            name: '饼图',
         }],
     }],
     active: {},
