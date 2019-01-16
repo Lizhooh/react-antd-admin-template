@@ -28,7 +28,7 @@ const RouterView = () => (
                     path={item.path}
                     component={item.component}
                 />
-            );
+            )
         })}
         <Route path='*' component={NotFound} />
     </Switch>
