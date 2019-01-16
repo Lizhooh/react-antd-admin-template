@@ -1,7 +1,11 @@
 import React from 'react';
 import loadable from '@loadable/component';
-import Index from '../views/index';
+import Index from '../views/Index';
 import LoadPageIcon from '../components/common/LoadPageIcon';
+
+const asyncLoad = (C) => (
+    loadable(() => C, { fallback: <LoadPageIcon /> })
+);
 
 export default [
     {
@@ -12,6 +16,7 @@ export default [
     {
         path: '/chart',
         exact: true,
-        component: loadable(() => import('../views/chart'), { fallback: <LoadPageIcon /> }),
+        component: asyncLoad(import('../views/Chart')),
     },
 ];
+

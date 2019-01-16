@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 import routerMap from './router';
 import Menu from './container/Menu';
 import Navigation from './container/Navigation';
-import NotFound from './views/not-found';
+import NotFound from './views/NotFound';
 
 const RouterView = () => (
     <Switch>

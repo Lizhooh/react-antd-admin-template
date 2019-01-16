@@ -27,7 +27,8 @@ export const onMenuItemClick = (item, parent) => {
 // 根据 url 检查激活状态
 export const initActive = () => {
     commit('menu', state => {
-        const res = isActive(state.list, window.location.pathname);
+        const p = window.location.hash.slice(1);
+        const res = isActive(state.list, p);
         if (res) state.active = res;
         else state.active = {};
         return state;

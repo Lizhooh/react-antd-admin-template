@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 
 export default () => (
     <Panel className="flex flex-center">
@@ -7,7 +9,7 @@ export default () => (
             <img src={require('../assets/not-found.png')} alt='' />
             <div>
                 <h3>404 - 抱歉，你访问的页面不存在</h3>
-                <p>您要找的页面没有找到，请返回 <a href="/">首页</a> 继续浏览</p>
+                <p>您要找的页面没有找到，请返回 <Link to='/'>首页</Link> 继续浏览</p>
             </div>
         </Main>
     </Panel>
