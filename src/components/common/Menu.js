@@ -47,7 +47,7 @@ export default class Menu extends Component {
                         {/* 子项 */}
                         <ItemSubPanel active={mark[index]} n={item.children}>
                             {item.children && item.children.map(i => (
-                                <Link key={i.id}
+                                <Link key={i.id} replace
                                     to={Array.isArray(i.path) ? i.path[0] : i.path}>
                                     <ItemChild
                                         className="flex flex-ai-center"
@@ -61,7 +61,6 @@ export default class Menu extends Component {
                     </div>
                 ))}
                 </div>
-
                 <OnUpdate call={initActive} />
             </Panel>
         );

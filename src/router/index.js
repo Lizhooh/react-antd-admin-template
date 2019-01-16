@@ -3,9 +3,10 @@ import loadable from '@loadable/component';
 import Index from '../views/Index';
 import LoadPageIcon from '../components/common/LoadPageIcon';
 
-const asyncLoad = (C) => (
-    loadable(() => C, { fallback: <LoadPageIcon /> })
-);
+const asyncLoad = (C) => {
+    const View = loadable(() => C, { fallback: <LoadPageIcon /> });
+    return (props) => <View {...props} />;
+}
 
 export default [
     {

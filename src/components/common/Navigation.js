@@ -17,7 +17,7 @@ export default class Navigation extends Component {
                 <div className='flex-ai-center'>
                     <Breadcrumb>
                         <Breadcrumb.Item>
-                            <Link to='/'>首页</Link>
+                            <Link to='/' replace>首页</Link>
                         </Breadcrumb.Item>
                         {activeMenu.id &&
                             <Breadcrumb.Item>
@@ -26,7 +26,7 @@ export default class Navigation extends Component {
                         }
                         {activeMenu.id &&
                             <Breadcrumb.Item>
-                                <Link to={activeMenu.id}>{activeMenu.name}</Link>
+                                <Link to={activeMenu.id} replace>{activeMenu.name}</Link>
                             </Breadcrumb.Item>
                         }
                     </Breadcrumb>
@@ -36,7 +36,7 @@ export default class Navigation extends Component {
                 <ul className="flex nav-list">
                     {data.link && data.link.map((item, index) => (
                         <li key={index}>
-                            <Link to={item.path} style={{ color: '#555' }}>{item.text}</Link>
+                            <Link to={item.path} style={{ color: '#555' }} replace>{item.text}</Link>
                         </li>
                     ))}
                 </ul>
