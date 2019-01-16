@@ -29,6 +29,7 @@ export const initActive = () => {
     commit('menu', state => {
         const res = isActive(state.list, window.location.pathname);
         if (res) state.active = res;
+        else state.active = {};
         return state;
     });
 }

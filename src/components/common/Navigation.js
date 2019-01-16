@@ -35,7 +35,9 @@ export default class Navigation extends Component {
                 <div className="flex-full"></div>
                 <ul className="flex nav-list">
                     {data.link && data.link.map((item, index) => (
-                        <li key={index}>{item.text}</li>
+                        <li key={index}>
+                            <Link to={item.path} style={{ color: '#555' }}>{item.text}</Link>
+                        </li>
                     ))}
                 </ul>
 

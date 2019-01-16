@@ -1,21 +1,17 @@
+import React from 'react';
+import loadable from '@loadable/component';
 import Index from '../views/index';
-import Chart from '../views/chart';
-import Chart2 from '../views/chart2';
+import LoadPageIcon from '../components/common/LoadPageIcon';
 
 export default [
     {
-        path: ['/index'],
+        path: '/index',
         exact: true,
         component: Index,
     },
     {
-        path: ['/chart'],
+        path: '/chart',
         exact: true,
-        component: Chart,
-    },
-    {
-        path: ['/chart2'],
-        exact: true,
-        component: Chart2,
+        component: loadable(() => import('../views/chart'), { fallback: <LoadPageIcon /> }),
     },
 ];
