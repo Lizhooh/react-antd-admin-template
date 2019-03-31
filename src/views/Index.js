@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateThemeColor } from '../stores/actions/theme';
+
+import { actions } from '../stores';
+
+const { updateThemeColor } = actions.theme;
 
 export default connect(
     state => ({ state: state.index }),

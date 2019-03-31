@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-
 export default () => (
     <Panel className="flex flex-center">
         <Main className="flex flex-ai-center">

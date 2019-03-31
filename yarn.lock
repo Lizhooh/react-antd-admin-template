@@ -107,12 +107,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@loadable/component@^5.2.2":
-  version "5.2.2"
-  resolved "https://registry.npmjs.org/@loadable/component/-/component-5.2.2.tgz#64db5fb1e93d6bc93596947336283979f055d5d2"
-  dependencies:
-    hoist-non-react-statics "^3.2.1"
-
 abab@^1.0.3:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/abab/download/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -3734,12 +3728,6 @@ hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
-hoist-non-react-statics@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
-  dependencies:
-    react-is "^16.3.2"
-
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/home-or-tmp/download/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -6803,7 +6791,7 @@ react-is@^16.3.1:
   version "16.4.2"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.4.2.tgz#84891b56c2b6d9efdee577cc83501dfc5ecead88"
 
-react-is@^16.3.2, react-is@^16.7.0:
+react-is@^16.7.0:
   version "16.7.0"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
 
@@ -6840,6 +6828,7 @@ react-redux@^5.0.7:
 react-router-dom@^4.3.1:
   version "4.3.1"
   resolved "http://registry.npm.taobao.org/react-router-dom/download/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
+  integrity sha1-TCYZ/CTE+ofJ/Rj0+0pD/mP71cY=
   dependencies:
     history "^4.7.2"
     invariant "^2.2.4"
@@ -6851,6 +6840,7 @@ react-router-dom@^4.3.1:
 react-router@^4.1.0, react-router@^4.3.1:
   version "4.3.1"
   resolved "http://registry.npm.taobao.org/react-router/download/react-router-4.3.1.tgz#aada4aef14c809cb2e686b05cee4742234506c4e"
+  integrity sha1-qtpK7xTICcsuaGsFzuR0IjRQbE4=
   dependencies:
     history "^4.7.2"
     hoist-non-react-statics "^2.5.0"
@@ -7022,6 +7012,13 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-easy-action@^1.0.7:
+  version "1.0.7"
+  resolved "http://registry.npm.taobao.org/redux-easy-action/download/redux-easy-action-1.0.7.tgz#39aa5e2af33c2e85a4fa581a5062c85bcfcf03c2"
+  integrity sha1-OapeKvM8LoWk+lgaUGLIW8/PA8I=
+  dependencies:
+    redux-store-init "^2.2.0"
+
 redux-logger@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.6.tgz#f7555966f3098f3c88604c449cf0baf5778274bf"
@@ -7031,6 +7028,13 @@ redux-logger@^3.0.6:
 redux-store-init@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/redux-store-init/download/redux-store-init-2.1.0.tgz#3c6dcb51ae1e7759fb840d3955b1acf75a8ddc2c"
+  dependencies:
+    is-env latest
+
+redux-store-init@^2.2.0:
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/redux-store-init/download/redux-store-init-2.2.0.tgz#bff00ac3dc056200efe08106edc0ceb911da77ab"
+  integrity sha1-v/AKw9wFYgDv4IEG7cDOuRHad6s=
   dependencies:
     is-env latest
 
