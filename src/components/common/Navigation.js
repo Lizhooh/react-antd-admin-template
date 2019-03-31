@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { Popover, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
@@ -10,24 +10,22 @@ function StringFirstToUpper(str = '') {
 }
 
 export default ({ data = {}, activeMenu }) => (
-    <Root className='flex flex-ai-center'>
-        <div className='flex-ai-center'>
-            <Breadcrumb>
-                <Breadcrumb.Item>
-                    <Link to='/' replace>首页</Link>
-                </Breadcrumb.Item>
-                {activeMenu.id &&
+    <Root>
+        <Breadcrumb className='flex-ai-center'>
+            <Breadcrumb.Item>
+                <Link to='/' replace>首页</Link>
+            </Breadcrumb.Item>
+            {activeMenu.id &&
+                <Fragment>
                     <Breadcrumb.Item>
                         {activeMenu.parent.name}
                     </Breadcrumb.Item>
-                }
-                {activeMenu.id &&
                     <Breadcrumb.Item>
                         <Link to={activeMenu.id} replace>{activeMenu.name}</Link>
                     </Breadcrumb.Item>
-                }
-            </Breadcrumb>
-        </div>
+                </Fragment>
+            }
+        </Breadcrumb>
 
         <div className='flex-full'></div>
         <ul className='flex nav-list'>
@@ -55,7 +53,7 @@ export default ({ data = {}, activeMenu }) => (
             </div>
         </Popover>
     </Root>
-)
+);
 
 const Root = styled.div`
     height: ${p => p.theme.navigation.height};
@@ -67,6 +65,8 @@ const Root = styled.div`
     box-shadow: 1px 3px 8px rgba(1, 1, 1, 0.06);
     text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.04);
     padding-left: 16px;
+    display: flex;
+    align-items: center;
 
     ul.nav-list {
         margin: 0;
