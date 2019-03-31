@@ -54,7 +54,7 @@ export default ({ commit, getState }) => ({
     // 点击菜单项时改变
     onMenuItemClick(item, parent) {
         Nprogress.set(0.4);
-        setTimeout(Nprogress.done, 500);
+        setTimeout(Nprogress.done, 300);
         item.parent = parent;
         commit({ active: item });
     },
