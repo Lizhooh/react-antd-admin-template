@@ -5,7 +5,7 @@ import ThemeModel from './model/theme';
 import MenuModel from './model/menu';
 import NavigateModel from './model/navigate';
 
-const easy = Easy({
+const easy = new Easy({
     initState: {},
     devtool: true,
     model: {
@@ -19,4 +19,13 @@ const easy = Easy({
 export default easy.store;
 export const actions = easy.actions;
 export const models = easy.models;
+
+
+// 一些初始化工作
++ async function () {
+    const menuAction = actions.menu;
+    menuAction.initActive();
+}();
+
+
 

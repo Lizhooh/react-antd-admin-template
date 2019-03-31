@@ -11,26 +11,18 @@ import Navigation from './container/Navigation';
 import NotFound from './views/NotFound';
 import routes from './routes';
 
-const RouterView = () => (
-    <Switch>
-        {routes.map((item, index) => (
-            Array.isArray(item.path) ?
-                item.path.map((p, index2) => (
-                    <Route key={index2} {...p} />
-                )) :
-                <Route key={index} {...item} />
-        ))}
-        <Route path='*' component={NotFound} />
-    </Switch>
-);
-
 export default () => (
     <Router>
         <Fragment>
             <Menu />
             <Navigation />
             <Main>
-                <RouterView />
+                <Switch>
+                    {routes.map((item, index) => (
+                        <Route key={index} {...item} />
+                    ))}
+                    <Route path='*' component={NotFound} />
+                </Switch>
             </Main>
         </Fragment>
     </Router>

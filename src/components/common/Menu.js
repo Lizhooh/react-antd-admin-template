@@ -1,73 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { OnUpdate } from 'rrc';
+
 import Icon from './Icon';
 
-export default class Menu extends Component {
+export default ({
+    data = [],
+    active = {},
+    mark = [],
+    onMenuItemClick = e => e,
+    onMenuTogger = e => e,
+    initActive = e => e,
+}) => (
+    <Root>
+        <Logo className='flex flex-center'>Logo</Logo>
+        <div>{data.map((item, index) => (
+            <div key={item.id}>
+                <Item
+                    className='flex flex-ai-center'
+                    onClick={() => onMenuTogger(index)}>
+                    <Icon type={item.icon} color='#ccc' size={16} margin='0 10px 0 0' />
+                    <span className='flex-full'>{item.name}</span>
+                    <Icon
+                        type={`keyboard_arrow_${mark[index] ? 'down' : 'up'}`}
+                        color={`rgba(255, 255, 255, 0.${mark[index] ? '66' : '33'})`}
+                    />
+                </Item>
+                {/* 子项 */}
+                <ItemSubPanel active={mark[index]} n={item.children}>
+                    {item.children && item.children.map(i => (
+                        <Link key={i.id} replace
+                            to={i.path}>
+                            <ItemChild
+                                className='flex flex-ai-center'
+                                active={i.id === active.id}
+                                onClick={() => onMenuItemClick(i, item)}>
+                                <span className='flex-full'>{i.name}</span>
+                            </ItemChild>
+                        </Link>
+                    ))}
+                </ItemSubPanel>
+            </div>
+        ))}
+        </div>
+        <OnUpdate call={initActive} />
+    </Root>
+);
 
-    static defaultProps = {
-        data: [],
-        active: {},     // 激活的
-        mark: [],
-        onMenuItemClick: e => e,
-        onMenuTogger: e => e,
-        initActive: e => e,
-    }
-
-    componentDidMount() {
-        this.props.initActive();
-    }
-
-    render() {
-        const {
-            data, active, mark,
-            onMenuItemClick,
-            onMenuTogger,
-            initActive,
-        } = this.props;
-
-        return (
-            <Panel>
-                <Logo className="flex flex-center">
-                    Logo
-                </Logo>
-                <div>{data.map((item, index) => (
-                    <div key={item.id}>
-                        <Item
-                            className="flex flex-ai-center"
-                            onClick={() => onMenuTogger(index)}>
-                            <Icon type={item.icon} color="#ccc" size={16} margin='0 10px 0 0' />
-                            <span className="flex-full">{item.name}</span>
-                            <Icon
-                                type={`keyboard_arrow_${mark[index] ? 'down' : 'up'}`}
-                                color={`rgba(255, 255, 255, 0.${mark[index] ? '66' : '33'})`}
-                            />
-                        </Item>
-                        {/* 子项 */}
-                        <ItemSubPanel active={mark[index]} n={item.children}>
-                            {item.children && item.children.map(i => (
-                                <Link key={i.id} replace
-                                    to={Array.isArray(i.path) ? i.path[0] : i.path}>
-                                    <ItemChild
-                                        className="flex flex-ai-center"
-                                        active={i.id === active.id}
-                                        onClick={() => onMenuItemClick(i, item)}>
-                                        <span className="flex-full">{i.name}</span>
-                                    </ItemChild>
-                                </Link>
-                            ))}
-                        </ItemSubPanel>
-                    </div>
-                ))}
-                </div>
-                <OnUpdate call={initActive} />
-            </Panel>
-        );
-    }
-}
-
-const Panel = styled.div`
+const Root = styled.div`
     width: ${p => p.theme.menu.width};
     background-color: ${p => p.theme.menu.backgroundColor};
     height: 100%;

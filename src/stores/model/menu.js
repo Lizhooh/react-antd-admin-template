@@ -80,11 +80,7 @@ export default ({ commit, getState }) => ({
 function isActive(list, P) {
     for (let i = 0; i < list.length; i++) {
         if (!Array.isArray(list[i].children)) continue;
-        const item = list[i].children.find(i => {
-            if (Array.isArray(i.path))
-                return i.path.indexOf(P) > -1;
-            return i.path === P;
-        });
+        const item = list[i].children.find(i => i.path === P);
         if (item) {
             item.parent = list[i];
             return item;

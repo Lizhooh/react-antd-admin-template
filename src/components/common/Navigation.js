@@ -1,70 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Popover, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
+
 import Icon from './Icon';
 
 function StringFirstToUpper(str = '') {
     return str[0].toUpperCase() + str.slice(1);
 }
 
-export default class Navigation extends Component {
-    render() {
-        const { data = {}, activeMenu } = this.props;
+export default ({ data = {}, activeMenu }) => (
+    <Root className='flex flex-ai-center'>
+        <div className='flex-ai-center'>
+            <Breadcrumb>
+                <Breadcrumb.Item>
+                    <Link to='/' replace>首页</Link>
+                </Breadcrumb.Item>
+                {activeMenu.id &&
+                    <Breadcrumb.Item>
+                        {activeMenu.parent.name}
+                    </Breadcrumb.Item>
+                }
+                {activeMenu.id &&
+                    <Breadcrumb.Item>
+                        <Link to={activeMenu.id} replace>{activeMenu.name}</Link>
+                    </Breadcrumb.Item>
+                }
+            </Breadcrumb>
+        </div>
 
-        return (
-            <Panel className="flex flex-ai-center">
-                <div className='flex-ai-center'>
-                    <Breadcrumb>
-                        <Breadcrumb.Item>
-                            <Link to='/' replace>首页</Link>
-                        </Breadcrumb.Item>
-                        {activeMenu.id &&
-                            <Breadcrumb.Item>
-                                {activeMenu.parent.name}
-                            </Breadcrumb.Item>
-                        }
-                        {activeMenu.id &&
-                            <Breadcrumb.Item>
-                                <Link to={activeMenu.id} replace>{activeMenu.name}</Link>
-                            </Breadcrumb.Item>
-                        }
-                    </Breadcrumb>
-                </div>
+        <div className='flex-full'></div>
+        <ul className='flex nav-list'>
+            {data.link && data.link.map((item, index) => (
+                <li key={index}>
+                    <Link to={item.path} style={{ color: '#555' }} replace>{item.text}</Link>
+                </li>
+            ))}
+        </ul>
 
-                <div className="flex-full"></div>
-                <ul className="flex nav-list">
-                    {data.link && data.link.map((item, index) => (
-                        <li key={index}>
-                            <Link to={item.path} style={{ color: '#555' }} replace>{item.text}</Link>
-                        </li>
-                    ))}
-                </ul>
+        <Popover
+            content={<div>
+                {data.oper && data.oper.map((item, index) => (
+                    <Selected key={index}>
+                        <Icon type={item.icon} color={item.color} />
+                        <span>{item.text}</span>
+                    </Selected>
+                ))}
+            </div>}
+            placement='bottom'
+            trigger={['click']}>
+            <div className='user flex flex-center'>
+                <img src={require('@/assets/user.jpg')} alt='' className='avatar' />
+                <span>{StringFirstToUpper(data.userName + '' || 'error')}</span>
+            </div>
+        </Popover>
+    </Root>
+)
 
-                <Popover
-                    content={
-                        <div>
-                            {data.oper && data.oper.map((item, index) => (
-                                <Selected key={index}>
-                                    <Icon type={item.icon} color={item.color} />
-                                    <span>{item.text}</span>
-                                </Selected>
-                            ))}
-                        </div>
-                    }
-                    placement="bottom"
-                    trigger={['click']}>
-                    <div className="user flex flex-center">
-                        <img src={require('@/assets/user.jpg')} alt='' className="avatar" />
-                        <span>{StringFirstToUpper(data.userName + '' || 'error')}</span>
-                    </div>
-                </Popover>
-            </Panel>
-        );
-    }
-}
-
-const Panel = styled.div`
+const Root = styled.div`
     height: ${p => p.theme.navigation.height};
     background-color: ${p => p.theme.navigation.backgroundColor};
     position: fixed;
