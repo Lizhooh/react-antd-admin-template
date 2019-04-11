@@ -6,8 +6,8 @@ import {
     Switch,
 } from 'react-router-dom';
 
-import Menu from './container/Menu';
-import Navigation from './container/Navigation';
+import Menu from './containers/Menu';
+import Navigation from './containers/Navigation';
 import NotFound from './views/NotFound';
 import routes from './routes';
 

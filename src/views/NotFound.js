@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export default () => (
-    <Panel className="flex flex-center">
+    <Root className="flex flex-center">
         <Main className="flex flex-ai-center">
             <img src={require('../assets/not-found.png')} alt='' />
             <div>
@@ -11,10 +11,10 @@ export default () => (
                 <p>您要找的页面没有找到，请返回 <Link to='/'>首页</Link> 继续浏览</p>
             </div>
         </Main>
-    </Panel>
+    </Root>
 );
 
-const Panel = styled.div`
+const Root = styled.div`
     margin: 20px;
     height: 500px;
     background-color: #fff;
